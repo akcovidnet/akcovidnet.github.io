@@ -1,0 +1,97 @@
+<html>
+
+<head>
+<style>
+   .clinic {
+    margin-left:10px;
+    padding:10px;
+    border:1px dotted blue;
+    max-width: 600px;
+  /*  display:flex;*/
+   }
+
+
+   .clinic div {
+   	display: flex;
+   	align-items: stretch;
+
+   }
+   .clinic div span {
+   	flex-basis:30%;
+   	   	font-weight:bold;
+   	/*display:flex;*/
+   	
+   }
+
+   .clinic div span.hours {
+   	flex-basis:20%;
+   	margin-left:10px;
+   	/*display:flex;*/
+   }
+
+      .clinic div span.short {
+   	flex-basis:20%;
+   
+   	/*display:flex;*/
+   }
+</style>
+	</head>
+
+<body>
+
+<div class='clinic'>
+<h3 >Name of Sites Goes Here</h3>
+
+
+
+<div><span class='short'>Address:</span> big long address goes here</div>
+<br/>
+
+<div><em>Hours</em></div>
+
+<div><span class='hours' >Monday:</span> lotods of ohosues go here</div>
+<div><span class='hours'>Wednesday:</span> lotods of ohosues go here</div>
+<div><span class='hours'>Thursday:</span> lotods of ohosues go here</div>
+<div><span class='hours'>Monday:</span> lotods of ohosues go here</div>
+
+<br/>
+<div><span class='xshort'>Medical Referral Needed:</span> Yes</div>
+<div><span class='xshort'>Accepts Voucher:</span> Yes</div>
+<br/>
+<div><span>Notes:</span> This site offers symptomatic testing, mandate 10 asymtomatic traveler testing, and testing related to employer requirements. To access testing please register at app.Kelvin.care to create a testing profile. Even if you are not a traveler-please begin a traveler declaration and if not have traveled please choose option 3a-and enter the address you will be staying while awaiting your testing results. Once you are registered you may go to the testing site. Please arrive at the site with a face covering and wait in your vehicle for instructions of site staff. You will need to have Photo ID available and no medical referrals are neccesary. You will receive your test results the e-mail you have provided.</div>
+</div>
+
+
+</body>
+</html>
+
+
+<!-- curl 'https://findahealthcenter.hrsa.gov//healthcenters/find?lon=-151.004157815&lat=64.8080878980001&radius=2500&healthCenter=fairbanks' \
+  -H 'Connection: keep-alive' \
+  -H 'Accept: application/json, text/plain, */*' \
+  -H 'User-Agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.89 Mobile Safari/537.36' \
+  -H 'Content-Type: application/json' \
+  -H 'Sec-Fetch-Site: same-origin' \
+  -H 'Sec-Fetch-Mode: cors' \
+  -H 'Sec-Fetch-Dest: empty' \
+  -H 'Referer: https://findahealthcenter.hrsa.gov/?filteredText=Fairbanks&zip=Alaska&radius=2500&incrementalsearch=false' \
+  -H 'Accept-Language: en-US,en;q=0.9' \
+  -H 'Cookie: WT_FPC=id=7bfac4a7-9607-4ae1-a397-6b2f487d06b2:lv=1596378165937:ss=1596377539943' \
+  --compressed
+
+
+  curl 'https://statse.webtrendslive.com/dcs222l9nwift8e4wcqk9bgst_4i5i/dcs.gif?&dcsdat=1596381862257&dcsuri=/&dcsref=https://findahealthcenter.hrsa.gov/?filteredText=Fairbanks%26zip=Alaska%26radius=2500%26incrementalsearch=false&WT.tz=-4&WT.bh=11&WT.ul=en-US&WT.cd=24&WT.sr=1426x1202&WT.jo=No&WT.ti=Download%253A%2520XLXS&WT.js=Yes&WT.jv=1.5&WT.ct=unknown&WT.bs=1426x1202&WT.fv=Not%2520enabled&WT.slv=Not%2520enabled&WT.le=UTF-8&WT.tv=10.4.24&WT.dl=20&WT.ssl=1&WT.es=findahealthcenter.hrsa.gov%252F&WT.cg_n=Tools%253BLocators&WT.cg_s=Locators%253BFind%2520a%2520Health%2520Center&WT.pi=Find%2520a%2520Health%2520Center&WT.fb_js=0&WT.ce=2&WT.vt_f_tlh=1596381862&WT.vtvs=1596381139943&WT.vtid=7bfac4a7-9607-4ae1-a397-6b2f487d06b2&WT.co_f=7bfac4a7-9607-4ae1-a397-6b2f487d06b2' \
+  -H 'authority: statse.webtrendslive.com' \
+  -H 'user-agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.89 Mobile Safari/537.36' \
+  -H 'accept: image/webp,image/apng,image/*,*/*;q=0.8' \
+  -H 'sec-fetch-site: cross-site' \
+  -H 'sec-fetch-mode: no-cors' \
+  -H 'sec-fetch-dest: image' \
+  -H 'referer: https://findahealthcenter.hrsa.gov/?filteredText=Fairbanks&zip=Alaska&radius=2500&incrementalsearch=false' \
+  -H 'accept-language: en-US,en;q=0.9' \
+  -H 'cookie: ACOOKIE=C8ctADdiZmFjNGE3LTk2MDctNGFlMS1hMzk3LTZiMmY0ODdkMDZiMgAAAAABAAAAZo0BAEPaJl/T1yZfAQAAAGVcAABD2iZf09cmXwAAAAA-' \
+  --compressed
+
+
+
+  blob:https://findahealthcenter.hrsa.gov/28ea5487-e397-4286-8887-d11fa30f11cc -->

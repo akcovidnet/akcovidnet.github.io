@@ -44,12 +44,7 @@
      vertical-align: baseline;
    }
 
-   h1 #opennew {
-    font-size:.8em;
-    color:lightblue;
-    font-weight: normal;
-/*    vertical-align: baseline;*/
-   }
+
 
    h1 a {
     color:white;
@@ -121,8 +116,21 @@ font-size: 1.25em;
     max-width:500px;
    }
 
-   #opennew {
+   .opennew {
     float:right;
+    background-color: blue;
+    font-size:.9em;
+    color:lightblue;
+    font-weight: normal;
+    line-height: inherit;
+    text-decoration: none;
+/*    vertical-align: baseline;*/
+   }
+
+   .opennew:hover{
+    color:white;
+    text-decoration: underline;
+   }
    }
 /*   .clinic * {
    
@@ -199,7 +207,7 @@ font-size: 1.25em;
 
 <body>
 
-<h1><a id="sitelink" target="_blank" href="https://akcovid.net">akcovid.net</a> <span>|</span> COVID-19 Testing Sites in Alaska <a id="opennew" target="_new" href="https://akcovid.net">Open In New Window</a></h1>
+<h1><a id="sitelink" target="_blank" href="https://akcovid.info">akcovid.info</a> <span>|</span> COVID-19 Testing Sites in Alaska <a class="opennew" target="_new" href="https://akcovid.info">Open In New Window</a></h1>
 
 <div class="about">
 
@@ -235,7 +243,7 @@ font-size: 1.25em;
 
 <script>
 
-  function inIframe () {
+function inIframe () {
     try {
         return window.self !== window.top;
     } catch (e) {
@@ -243,23 +251,9 @@ font-size: 1.25em;
     }
 }
 
-if (inIframe()){
-$('#sitelink').each(function() {        
-    $(this).attr('target', '_top');       
-});
 
 
-} else {
 
-
-  $('#sitelink').each(function() {        
-    $(this).attr('target', '_self');       
-});
-$('#opennew').each(function() {
- $(this).hide();
-});
-
-}
 
 
   // if (inIframe()){
@@ -451,9 +445,9 @@ function makeCity(city,xs){
       var qtytestinglocation =  xs.length + ' site';
     }
   if (xs.length > 1){
-    var cityElement = $('<div class="City"><h2>'+city+ ' : '+qtytestinglocation+'</h2></div>');
+    var cityElement = $('<div class="City"><h2>'+city+ ' : '+qtytestinglocation+'<a class="opennew" target="_new" href=#'+city.toLowerCase()+'>Open In New Window</a></h2></div>');
     } else {
-      var cityElement = $('<div class="City"><h2>'+city+ '</h2></div>'); 
+      var cityElement = $('<div class="City"><h2>'+city+ '<a class="opennew" target="_new" href=#'+city.toLowerCase()+'>Open In New Window</a></h2></div>'); 
     }
     //console.log(xs);
     for (var i = 0;i<xs.length;i++){
@@ -514,6 +508,28 @@ for (var i = 0;i<cities_sorted.length;i++) {
     }
 }
 
+
+$(document).ready(function(){
+  if (inIframe()){
+      $('#sitelink').each(function() {        
+          $(this).attr('target', '_top');       
+      });
+
+
+  } else {
+
+
+      $('#sitelink').each(function() {        
+          $(this).attr('target', '_self');       
+      });
+
+      $('.opennew').each(function() {
+        $(this).hide();
+      });
+
+}
+
+});
 
 
 
