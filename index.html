@@ -1,12 +1,10 @@
 
 <html>
-
-
 <head>
   <meta name="Description" CONTENT="Alaska COVID-19 Testing Sites - Find a COVID-19 testing site by Alaska Community">
 <title>Alaska COVID-19 Testing Sites</title>
 <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-70817-22"></script>
+<!-- <script async src="https://www.googletagmanager.com/gtag/js?id=UA-70817-22"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -14,6 +12,19 @@
 
   gtag('config', 'UA-70817-22');
 </script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+ -->
+
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-70817-22', 'auto');
+ga('send', 'pageview');
+</script>
+
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/4.1.2/papaparse.js"></script> -->
@@ -44,12 +55,7 @@
      vertical-align: baseline;
    }
 
-   h1 #opennew {
-    font-size:.8em;
-    color:lightblue;
-    font-weight: normal;
-/*    vertical-align: baseline;*/
-   }
+
 
    h1 a {
     color:white;
@@ -79,7 +85,9 @@
     max-width: 600px;
    }
 
-
+   .clinic span {
+    font-weight: bold;
+   }
 
 
    #citylinks a {
@@ -104,6 +112,11 @@ font-size: 1.25em;
     font-weight: bold;
    }
 
+
+#menuboxloading {
+  background-color:orange;
+}
+
    select{
     font-size: 1.25em;
    }
@@ -121,8 +134,25 @@ font-size: 1.25em;
     max-width:500px;
    }
 
-   #opennew {
+   .opennew {
     float:right;
+    background-color: white;
+    font-size:.9em;
+    color:blue;
+    font-weight: normal;
+    line-height: inherit;
+    text-decoration: none;
+/*    vertical-align: baseline;*/
+   }
+
+   .opennew:hover{
+    color:white;
+    text-decoration: underline;
+   
+   }
+
+   .openew img {
+    vertical-align: middle;
    }
 /*   .clinic * {
    
@@ -141,65 +171,13 @@ font-size: 1.25em;
    }*/
 
 </style> 
-<script>
-    function arrayToTable(tableData) {
-        var table = $('<table id="myTable" class="stripe"><thead></thead><tbody></tbody></table>');
 
-        $.fn.child = function(s) {
-            return $(this).children(s)[0];
-        };
-
-        var thead = $(table).children('thead');
-        var tbody = $(table).children('tbody');
-        // console.log(table);
-        // console.log(thead);
-        // console.log(tbody);
-        $(tableData).each(function (i, rowData) {
-               var row = $('<tr></tr>');  
-            
-            $(rowData).each(function (j, cellData) {
-                if (cellData.length == 0){
-
-                    var cData = cellData ;
-                } else {
-                    var cData = cellData ;
-                }
-
-
-                        if(i==0){
-              row.append($('<th>'+cData+'</th>'));
-            } else {
-               row.append($('<td>'+cData+'</td>'));
-            }
-
-
-
-            });
-
-              if(i==0){
-            thead.append(row);
-        } else {
-            if (i != tableData.length -1){
-                    tbody.append(row);
-            }
-        //console.log(i,tableData.length);
-        }
-        });
-        return table;
-    }
-
-
-           
-           
-           
-
-</script>
 
 </head>
 
 <body>
-
-<h1><a id="sitelink" target="_blank" href="https://akcovid.net">akcovid.net</a> <span>|</span> COVID-19 Testing Sites in Alaska <a id="opennew" target="_new" href="https://akcovid.net">Open In New Window</a></h1>
+<a name="enlarge" />
+<h1><a id="sitelink" target="_blank" href="https://akcovid.net">akcovid.net</a> <span>|</span> COVID-19 Testing Sites in Alaska <a class="opennew" target="_new" href="https://akcovid.net/#enlarge"><img src="Maximise.svg">Enlarge</a></h1>
 
 <div class="about">
 
@@ -222,20 +200,38 @@ font-size: 1.25em;
     <h2>Choose your community</h2>
 </div>
 
+
+
+<div class="menubox" id="menuboxloading" style="border:3px solid orange;padding:5px;">
+<img height="25" width="25" src="loader.gif">Loading Data from State of Alaska
+</div>
+
+<div class="menubox" id="menuboxsoa" style="border:3px solid orange;padding:5px;display:none;">
+Slow to load Testing Site Data from State of Alaska. Using Cached Copy Instead.
+</div>
+
+<div class="menubox" id="menuboxfail" style="border:3px solid orange;padding:5px;background-color:orange;display:none;">
+Unable to load Testing Site Data from State of Alaska or Cached Copy. Please try again later.
+</div>
+
 <div class="menubox" id="menubox" style="background-color: lightgreen;padding:5px;">
     View Testing Sites For:  <select id="menu">
         <option>Choose Your Community</option>
-    </select> &larr;&larr;&larr;
+    </select>
 </div>
 
 <div id="abouttext">
    <br><em>About this page:</em> The <a href="https://dhss.alaska.gov/dph/Epi/id/Pages/COVID-19/default.aspx">State of Alaska DHSS</a> maintains testing site data as a <a href="https://coronavirus-response-alaska-dhss.hub.arcgis.com/app/2d92b77bc8044329a1ee3954b063bd8c">Map</a>.
-    This page retrieves data from <a href="https://coronavirus-response-alaska-dhss.hub.arcgis.com/datasets/testing-sites-public-view/data?geometry=10.547%2C-88.438%2C-10.547%2C88.438">DHSS</a> in real time and displays it broken down by community and testing site. <a href="mailto:admin@akcovid.info">Have feedback?</a>. 
+    This page retrieves data from <a href="https://coronavirus-response-alaska-dhss.hub.arcgis.com/datasets/testing-sites-public-view/data?geometry=10.547%2C-88.438%2C-10.547%2C88.438">DHSS</a> in real time and displays it broken down by community and testing site. <a target="_blank"  href="https://forms.gle/iPnjCjgpWwSEpySv8">Have feedback?</a>. 
 </div>
 
 <script>
 
-  function inIframe () {
+
+
+
+
+function inIframe () {
     try {
         return window.self !== window.top;
     } catch (e) {
@@ -243,23 +239,9 @@ font-size: 1.25em;
     }
 }
 
-if (inIframe()){
-$('#sitelink').each(function() {        
-    $(this).attr('target', '_top');       
-});
 
 
-} else {
 
-
-  $('#sitelink').each(function() {        
-    $(this).attr('target', '_self');       
-});
-$('#opennew').each(function() {
- $(this).hide();
-});
-
-}
 
 
   // if (inIframe()){
@@ -271,52 +253,26 @@ $('#opennew').each(function() {
   // }
 
   function cleanCity(city){
-    var city = city;
+    var city = city.trim();
     var remove = ', AK';
     //console.log(city);
     city = city.replace('ANVSA, AK, USA','')
     city = city.replace(', AK','');
     city = city.replace(', Ak','');
     //console.log("replaced",city);
-    return city;
+    return city.trim();
   }
 
     $(function() {
     $("#menu").change(function() {
+        var city = $(this).find("option:selected")[0].value;
         location.hash = "" + $(this).find("option:selected")[0].value;
+        ga('send', 'event', 'search', 'city', city);
+
     });
 });
 
 
-var template = `<div>
-<h2 class='site'>Name of Site</h2>
-
-
-
-<div>Phone: Phone Number</div>
-<div>Email: Email</div>
-
-<div>Address: </div>
-<div>City:</div>
-<div>Zip: </div>
-
-<div> Hours </div>
-
-<div><span>Monday</span> open hours </div>
-<div><span>Tuesday</span> open hours </div>
-<div><span>Wednesday</span> open hours </div>
-<div><span>Thursday</span> open hours </div>
-<div><span>Friday</span> open hours </div>
-<div><span>Saturday</span> open hours </div>
-<div><span>Sunday</span> open hours </div>
-
-
-
-<div>Notes: </div>
-<div>Costs</div>
-
-</div>
-`;
 
 
 function keys(obj)
@@ -392,6 +348,7 @@ var template = `<div class='clinic'>
 <br/>
 `+labelPair("<span>Notes:</span>",lu('costs')+` `+lu('additional_notes')) + `
 `+labelPair("<span>Costs:</span>",lu('costs')+` `+lu('costs_other')) + `
+
 </div>
 `;  
 
@@ -431,11 +388,14 @@ function makeClinic(clinic){
 
 }
 
-
+// We use this to make a city and then the clinics & sites within it
 function makeCity(city,xs){
-     var city = cleanCity(city);
+
+    var city = cleanCity(city);
     var links = $('<a name="'+city+'" /><a name="'+city.toLowerCase()+'"/>');
     var link = $('<a href="#'+city.toLowerCase()+'">'+city+'</a>');
+
+    // Add options to our select menu
     if (xs.length > 1){
         var option = $('<option value="'+city.toLowerCase()+'">'+city+ '('+xs.length+')'+'</option>');
     } else {
@@ -453,9 +413,11 @@ function makeCity(city,xs){
   if (xs.length > 1){
     var cityElement = $('<div class="City"><h2>'+city+ ' : '+qtytestinglocation+'</h2></div>');
     } else {
-      var cityElement = $('<div class="City"><h2>'+city+ '</h2></div>'); 
+      var cityElement = $('<div class="City"><h2>'+city+ '</div>'); 
     }
     //console.log(xs);
+    xs.sort((a, b) => (a.name_of_collection_site.toLowerCase() > b.name_of_collection_site.toLowerCase()) ? 1 : -1)
+
     for (var i = 0;i<xs.length;i++){
         clinic = xs[i];
 
@@ -468,16 +430,22 @@ function makeCity(city,xs){
 }
 
 
+// We use this to make each site.
 function clinic(cities,fields,geo){
     //console.log(geo.x,geo.y);
-    var city = fields.city;
-    if (city == null){
+    //var city = fields.city;
+    var city = cleanCity(fields.city);
+
+    // if the city is missing, add it to unknown
+    if (city == null | city == ''){
         city = 'Unknown';
     } else {
 
         city = city.trim();
     }
     //console.log('city '+city);
+
+    // if we have never seen this city before...  
     if (cities[city]==undefined){
         cities[city] = [];
     }
@@ -487,38 +455,128 @@ function clinic(cities,fields,geo){
 
     cities[city].push(fields);
 };
- 
-var url = 'https://services1.arcgis.com/WzFsmainVTuD5KML/arcgis/rest/services/Testing_Sites_Public_View/FeatureServer/0/query?where=1%3D1&outFields=name_of_collection_site,address,city,zipcode,sunday,hours_open,monday,hours_open_monday,tuesday,hours_open_tuesday,wednesday,hours_open_wednesday,thursday,hours_open_thursday,friday,hours_open_friday,saturday,hours_open_saturday,public_contact_number_if_availa,public_e_mail_for_site_informat,medical_referral_needed,cost,cost_other,rapid_testing,RapidCapacity,RapidCapUKnw,urgent_testing,UrgentCapacity,UrgentCapUknw,private_testing_collection,PrivateCapacity,PrivateCapUknw,additional_notes,AcceptsVoucher&outSR=4326&f=json';
-var ulr = 'https://services1.arcgis.com/WzFsmainVTuD5KML/arcgis/rest/services/Testing_Sites_Public_View/FeatureServer/0/query?where=1%3D1&outFields=*&outSR=4326&f=json'
-  c = $.getJSON( url, function( data ) {
-  var cities = {};
-  var items = [];
-  $.each( data.features, function( key, val ) {
-    //console.log(val.attributes);
-    clinic(cities,val.attributes,val.geometry);
-    //items.push( "<li id='" + key + "'>" +key+  ':'+ val.attributes + "</li>" );
-  });
- 
-  // $( "<ul/>", {
-  //   "class": "my-new-list",
-  //   html: items.join( "" )
-  // }).appendTo( "body" );
-var cities_sorted = keys(cities).sort();
-//console.log(cities_sorted);
-for (var i = 0;i<cities_sorted.length;i++) {
-    var key = cities_sorted[i];
-    // check if the property/key is defined in the object itself, not in parent
-    if (cities.hasOwnProperty(key)) {           
-        //console.log(key, cities[key].length);
-        makeCity(key,cities[key]);
+
+
+function dataCleanup(val){
+  //console.log('cleanup',val.attributes);
+  if (val.attributes.globalid == 'a386e3dc-ff2d-49e5-8904-96ebaa1ad4f8'){
+      val.attributes.city = 'Bethel';
     }
+    if (val.attributes.globalid =='9bad2146-9e8e-4e25-8056-16aadeaf8c20'){
+      val.attributes.city = 'Point Hope';
+    }
+    if (val.attributes.globalid =='e61bf34b-9106-4d8e-8b0a-08aaf194bc34'){
+      val.attributes.city = 'Healy';
+    }
+    if (val.attributes != undefined){
+      val.attributes.city = cleanCity(val.attributes.city);
+    } else {
+      console.log("undefined val attrs");
+      //console.log(val);
+    }
+    //
+    return val;
 }
 
 
+function afterLoad(data){
+
+        var cities = {};
+        var items = [];
+        //console.log('data',data);
+        // $.each(data,function(key,val){
+        //   console.log(key,val);
+        // });
+        $.each( data.features, function( key, val ) {
+
+          val = dataCleanup(val);
+          //console.log(val);
+          clinic(cities,val.attributes,val.geometry);
+          //items.push( "<li id='" + key + "'>" +key+  ':'+ val.attributes + "</li>" );
+        });
+       
+        // $( "<ul/>", {
+        //   "class": "my-new-list",
+        //   html: items.join( "" )
+        // }).appendTo( "body" );
+      var cities_sorted = keys(cities).sort();
+      //console.log(cities_sorted);
+      for (var i = 0;i<cities_sorted.length;i++) {
+          var key = cities_sorted[i];
+          // check if the property/key is defined in the object itself, not in parent
+          if (cities.hasOwnProperty(key)) {           
+              //console.log(key, cities[key].length);
+              makeCity(key,cities[key]);
+          }
+      }
+
+
+        $(document).ready(function(){
+
+          if (inIframe()){
+              $('#sitelink').each(function() {        
+                  $(this).attr('target', '_top');       
+              });
+              ga('send', 'event', 'pageload', 'inframe', 'inframe');
+
+
+          } else {
+
+
+              $('#sitelink').each(function() {        
+                  $(this).attr('target', '_self');       
+              });
+
+              $('.opennew').each(function() {
+                $(this).hide();
+              });
+
+              ga('send', 'event', 'pageload', 'noframe', 'noframe');
+
+        }
+
+        
+
+        });
 
 
 
+}
+
+$.ajaxSetup({
+    timeout: 2000 //Time in milliseconds
 });
+
+
+
+var url = 'https://services1.arcgis.com/WzFsmainVTuD5KML/arcgis/rest/services/Testing_Sites_Public_View/FeatureServer/0/query?where=1%3D1&outFields=*&outSR=4326&f=json';
+//var url = 'x';
+  c = $.getJSON( url, function( data ) {
+        afterLoad(data);
+        $("#menuboxloading").slideUp();
+        ga('send', 'event', 'load', 'json', 'soa');
+    }).fail(function() {
+    //alert( "error" );
+          //alert("unable to load from SOA");
+          c = $.getJSON( './data.json', function( data ) {
+                afterLoad(data);
+                $("#menuboxloading").slideUp();
+                $("#menuboxsoa").slideDown();
+                ga('send', 'event', 'load', 'json', 'cache');
+                //alert("loaded from json");
+            }).fail(function() {
+
+                $("#menuboxloading").slideUp();
+                $("#menuboxfail").slideDown();
+                $("#menubox").slideUp();
+                ga('send', 'event', 'load', 'json', 'fail');
+            //alert( "error" );   
+
+            });
+
+
+
+    });
 
 
 
